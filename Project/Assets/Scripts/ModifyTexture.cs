@@ -37,17 +37,18 @@ public class ModifyTexture : MonoBehaviour {
     // Check for collisions
     void OnCollisionEnter(Collision collisionInfo)
     {
+        print("Collision!");
         DoSplat(collisionInfo.contacts[0].point, 32, Color.red);
     }
 
     public void DoSplat(Vector3 worldXYZ, int size, Color theColour)
     {
         // Calculate X, Y offsets
-        int posX = (int)worldXYZ.x - (int)this.transform.position.x;
-        posX /= pixelsPerUnit;
+        //int posX = (int)((worldXYZ.x - this.transform.position.x) * (float)pixelsPerUnit);
+        posX = (int)(worldXYZ.x * pixelsPerUnit);
 
-        int posY = (int)worldXYZ.y - (int)this.transform.position.y;
-        posY /= pixelsPerUnit;
+       // int posY = (int)((worldXYZ.y - this.transform.position.y) * (float)pixelsPerUnit);
+        
 
         print(worldXYZ);
         print(posX);
