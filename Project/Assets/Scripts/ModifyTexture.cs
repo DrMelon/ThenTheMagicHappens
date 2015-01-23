@@ -3,9 +3,8 @@ using System.Collections;
 
 public class ModifyTexture : MonoBehaviour {
 
-    public Texture2D blackTexture;
-    public Texture2D whiteTexture;
-
+    public Texture2D targetTexture;
+   
     public int pixelsPerUnit = 100;
 
 	// Use this for initialization
@@ -16,24 +15,14 @@ public class ModifyTexture : MonoBehaviour {
         {
             for (int j = 0; j < 2048; j++)
             {
-                blackTexture.SetPixel(i, j, Color.black);
+                targetTexture.SetPixel(i, j, Color.black);
             }
         }
 
         // Write
-        blackTexture.Apply();
+        targetTexture.Apply();
 
-        // HACKY STUFF!!
-        for (int i = 0; i < 2048; i++)
-        {
-            for (int j = 0; j < 2048; j++)
-            {
-                whiteTexture.SetPixel(i, j, Color.white);
-            }
-        }
 
-        // Write
-        whiteTexture.Apply();
 
 	}
 	
@@ -59,6 +48,28 @@ public class ModifyTexture : MonoBehaviour {
 
         int posY = (int)worldXYZ.y - (int)this.transform.position.y;
         posY /= pixelsPerUnit;
+
+        print(worldXYZ);
+        print(posX);
+        print(posY);
+
+
+        // Create a square ( will be a circle ) centred on x, y
+        for (int i = posX - size / 2; i < posX + size / 2; i++)
+        {
+            for(int j = posY - size / 2; j < posY + size / 2; j++)
+            {
+                if(i > 0 && i < 2048)
+                {
+                    if(j > 0 && j < 2048)
+                    {
+                        targetTexture.SetPixel(i, j, theColour);
+                    }
+                }
+            }
+        }
+
+        targetTexture.Apply();
 
     }
 }
