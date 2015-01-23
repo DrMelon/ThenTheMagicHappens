@@ -7,6 +7,8 @@ public class ModifyTexture : MonoBehaviour {
    
     public int pixelsPerUnit = 100;
 
+    private ParticleSystem.CollisionEvent[] collisionEvents = new ParticleSystem.CollisionEvent[16];
+
 	// Use this for initialization
 	void Start () 
     {
@@ -41,12 +43,34 @@ public class ModifyTexture : MonoBehaviour {
         DoSplat(collisionInfo.contacts[0].point, 32, Color.red);
     }
 
+    void OnParticleCollision(GameObject particles)
+    {
+        ParticleSystem theParticles;
+        theParticles = particles.GetComponent<ParticleSystem>();
+        int safeLength = theParticles.safeCollisionEventSize;
+        if (collisionEvents.Length < safeLength)
+        {
+            collisionEvents = new ParticleSystem.CollisionEvent[safeLength];
+        }
+
+        int numCollisions = theParticles.GetCollisionEvents(gameObject, collisionEvents);
+        int i = 0;
+        while (i < numCollisions)
+        {
+            if (gameObject.rigidbody)
+            {
+                //Get collision location
+                DoSplat(collisionEvents[i].intersection, 32, Color.red);
+            }
+        }
+    }
+
     public void DoSplat(Vector3 worldXYZ, int size, Color theColour)
     {
         // Calculate X, Y offsets
         //int posX = (int)((worldXYZ.x - this.transform.position.x) * (float)pixelsPerUnit);
-        posX = (int)(worldXYZ.x * pixelsPerUnit);
-
+        int posX = (int)(worldXYZ.x * pixelsPerUnit);
+        int posY = (int)(worldXYZ.z * pixelsPerUnit);
        // int posY = (int)((worldXYZ.y - this.transform.position.y) * (float)pixelsPerUnit);
         
 
