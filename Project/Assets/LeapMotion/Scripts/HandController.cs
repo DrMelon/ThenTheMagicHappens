@@ -62,6 +62,7 @@ public class HandController : MonoBehaviour {
       policy_flags &= ~Controller.PolicyFlag.POLICY_OPTIMIZE_HMD;
 
     leap_controller_.SetPolicyFlags(policy_flags);
+    
   }
 
   void Start() {
@@ -236,6 +237,7 @@ public class HandController : MonoBehaviour {
   void Update() {
     if (leap_controller_ == null)
       return;
+
     
     UpdateRecorder();
     Frame frame = GetFrame();
