@@ -8,6 +8,7 @@ public class GameVariables : MonoBehaviour {
 	public static int darkWizHealth = 100;
 	public static int darkWizMana = 100;
 
+
 	// Use this for initialization
 	void Start () {
 
