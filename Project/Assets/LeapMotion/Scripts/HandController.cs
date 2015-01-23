@@ -39,7 +39,7 @@ public class HandController : MonoBehaviour {
   
   LeapRecorder recorder_ = new LeapRecorder();
   
-  Controller leap_controller_;
+  public Controller leap_controller_;
 
   Dictionary<int, HandModel> hand_graphics_;
   Dictionary<int, HandModel> hand_physics_;
