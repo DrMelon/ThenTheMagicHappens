@@ -26,11 +26,7 @@ public class ControlsSys : MonoBehaviour {
 						if (Input.GetKey ("down")) {
 						transform.Translate (Vector2.up * 1 * Time.deltaTime);
 						}
-                        if (Input.GetKey("space"))
-                        {
-
-                        }
-						
+						}
 				}
 				if (this.gameObject.tag == "LightPlayer") {
 						if (Input.GetKey ("a")) {
