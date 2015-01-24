@@ -179,7 +179,7 @@ public class ComboBase : MonoBehaviour
             {
                didCombo = CheckMatchingCombo(SC);
             }
-
+            
             
             if(didCombo > -1)
             {
