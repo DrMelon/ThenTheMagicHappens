@@ -55,7 +55,6 @@ public class Gestures : MonoBehaviour
             if ( wandcenterx < CenterX ) // Player 1 (array 0)
             {
                 Player_Tool[0] = tool;
-                print(Player_Tool[0].GetLeapTool().Length);
             }
             else if ( wandcenterx > CenterX ) // Player 2 (array 1)
             {
