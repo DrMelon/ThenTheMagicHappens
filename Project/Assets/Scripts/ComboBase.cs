@@ -157,40 +157,17 @@ public class ComboBase : MonoBehaviour
         }
 
 
-
-        
-        
-
-
-        // Check PressedKey for Recognized Combos
-
+        /*
         if(Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            // Attempt to combine keys.
-            if (RecentKeys.Count > 0 && keysCombined == false)
-            {
-                CombineKeypresses();
-
-            }
-
-            // Check all combos
-            int didCombo = -1;
-            foreach(SpellCombo SC in SpellCombos.allCombos)
-            {
-               didCombo = CheckMatchingCombo(SC);
-            }
-            
-            
-            if(didCombo > -1)
-            {
-                // WOMBO COMBO
-                print("DID COMBO: " + didCombo.ToString());
-            }
-
-
-            // Tried to cast spell, reset queue
-            ResetQueues();
+            CastSpell();
         }
+        */
+        
+
+
+
+        
 
 
 
@@ -260,6 +237,34 @@ public class ComboBase : MonoBehaviour
         }
 
         keysCombined = true;
+    }
+
+    public void CastSpell() //call this when you want to try casting after building up inputs
+    {
+        // Attempt to combine keys.
+        if (RecentKeys.Count > 0 && keysCombined == false)
+        {
+            CombineKeypresses();
+
+        }
+
+        // Check all combos
+        int didCombo = -1;
+        foreach (SpellCombo SC in SpellCombos.allCombos)
+        {
+            didCombo = CheckMatchingCombo(SC);
+        }
+
+
+        if (didCombo > -1)
+        {
+            // WOMBO COMBO
+            print("DID COMBO: " + didCombo.ToString());
+        }
+
+
+        // Tried to cast spell, reset queue
+        ResetQueues();
     }
 
     public int CheckMatchingCombo(SpellCombo checkSpell)
