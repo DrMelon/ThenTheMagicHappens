@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 // Matthew Cormack
 // @johnjoemcbob
@@ -24,24 +25,36 @@ using System.Collections;
 //      Move left
 //      Move right
 
+
 public class ComboBase : MonoBehaviour
 {
     public string[] ValidKeys; // See keys above (these are defined in the editor)
 
-    private string[] RecentKeys;
+    // RecentKeys represents keypresses that have just been made;
+    // PressedKeys is the list of keys to be checked for a combo, as it has been processed to group combined presses together.
+    private KeyCommand[] RecentKeys;
+    private KeyCommand[] PressedKeys;
     private int currentkey = 0;
 
     private static int maxkeys = 10;
 
+
 	void Start()
     {
         // Dimension array
-        RecentKeys = new string[maxkeys];
+        PressedKeys = new KeyCommand[maxkeys];
+        RecentKeys = new KeyCommand[maxkeys];
         {
             // Initialize array elements to blank
             for (int key = 0; key < maxkeys; key++)
             {
-                RecentKeys[key] = "";
+                RecentKeys[key] = new KeyCommand();
+                PressedKeys[key] = new KeyCommand();
+
+                RecentKeys[key].keyPressed = "";
+                RecentKeys[key].framePressed = 0;
+                PressedKeys[key].keyPressed = "";
+                PressedKeys[key].framePressed = 0;
             }
         }
     }
@@ -57,7 +70,10 @@ public class ComboBase : MonoBehaviour
                 // If the key is down, add to the array
                 if (Input.GetKeyDown(key))
                 {
-                    RecentKeys[currentkey] = key;
+                    // Store what was pressed, and when.
+                    RecentKeys[currentkey].keyPressed = key;
+                    RecentKeys[currentkey].framePressed = Time.renderedFrameCount;
+                    RecentKeys[currentkey].combined = false;
 
                     // Increment starting position of the array, with looparound
                     currentkey++;
@@ -65,9 +81,42 @@ public class ComboBase : MonoBehaviour
                     {
                         currentkey = 0;
                     }
+                   
                 }
             }
         }
-        print(RecentKeys[maxkeys - 1]);
+
+        // Attempt to combine keypresses into combined keypresses.
+        KeyCommand prevKeyCmd = RecentKeys[0];
+        for (int key = 1; key < RecentKeys.Length; key++)
+        {
+            if(Math.Abs(RecentKeys[key].framePressed - prevKeyCmd.framePressed) <= 5 && prevKeyCmd.combined == false) // Within 5 frames
+            {
+                // Combine these keys.
+                PressedKeys[key - 1].keyPressed = (RecentKeys[key].keyPressed) + prevKeyCmd.keyPressed;
+                PressedKeys[key - 1].framePressed = RecentKeys[key].framePressed;
+                RecentKeys[key].combined = true;
+                PressedKeys[key - 1].combined = true;
+            }
+            else
+            {
+                PressedKeys[key - 1] = prevKeyCmd;
+            }
+            prevKeyCmd = RecentKeys[key];
+        }
+
+        //print(PressedKeys[0].keyPressed);
 	}
+}
+
+// The KeyCommand class represents a key pressed at a certain frame.
+// However, a KeyCommand can also be multiple keys: 
+// the keyPressed string can read "ab" or "xy" etc, and represents those keys having been pushed at a similar time.
+// Note; when checking for a key combination, make sure to check for "ab" AND "ba" - keys will not be sorted automatically.
+
+public class KeyCommand
+{
+    public string keyPressed;
+    public int framePressed;
+    public bool combined;
 }
