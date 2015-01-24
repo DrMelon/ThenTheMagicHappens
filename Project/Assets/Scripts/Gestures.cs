@@ -2,6 +2,10 @@
 using System.Collections;
 using Leap;
 
+// Matthew Cormack
+// 24/01/15 00:05
+// #GGJ15
+
 public class Gestures : MonoBehaviour 
 {
     public HandController LeapController;
@@ -45,6 +49,7 @@ public class Gestures : MonoBehaviour
                             else if (gesture.Type == Gesture.GestureType.TYPE_SWIPE) // Swipe, line
                             {
                                 SwipeGesture swipegesture = new SwipeGesture(gesture);
+                                print(swipegesture.Direction);
                                 if (Mathf.Abs(swipegesture.Direction.y) > 0.3f) // Moving up and down
                                 {
                                     //if (Mathf.Abs(swipegesture.Direction.z) < 0.8f) // Not moving much left and right
