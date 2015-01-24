@@ -43,9 +43,10 @@ public class Gestures : MonoBehaviour
         ToolModel[] tools = GameObject.FindObjectsOfType<ToolModel>();
         foreach (ToolModel tool in tools)
         {
-            // TODO: Crossproduct for direction of tool??
             // Find center x position of the wand (Tip position minus half length in wand direction)
             float wandcenteroffset = tool.GetLeapTool().TipPosition.z - (tool.GetLeapTool().Direction.z * tool.GetLeapTool().Length / 2);
+
+            // Decide which player's wand this is
             if (wandcenteroffset < CenterOffset) // Player 1 (array 0)
             {
                 Player_Tool[0] = tool;

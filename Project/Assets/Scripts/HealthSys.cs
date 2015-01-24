@@ -5,18 +5,20 @@ public class HealthSys : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D Col)
 		{
-			if (Col.gameObject.tag == "Magic")//Update tag in relation to magic 
-			{
-				if (this.gameObject.tag == "DarkPlayer")
-			    	{
-					GameVariables.lightWizHealth -= 1;
-				}else
-				if (this.gameObject.tag == "LightPlayer")
-					{
-					GameVariables.darkWizHealth -= 1;
 			
+ 				if (Col.gameObject.tag == "DarkPlayer")
+			    	{
+				print ("black");
+				GameVariables.darkWizHealth -= 20;
+		     	Destroy (gameObject);
+				}else
+				if (Col.gameObject.tag == "LightPlayer")
+					{
+					GameVariables.lightWizHealth -= 20;
+			print ("white");
+					Destroy (gameObject);
 				}
-			}
+			
 					
 			
 		}
