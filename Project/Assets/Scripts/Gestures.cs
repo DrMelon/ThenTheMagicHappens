@@ -3,8 +3,14 @@ using System.Collections;
 using Leap;
 
 // Matthew Cormack
+// @johnjoemcbob
 // 24/01/15 00:05
 // #GGJ15
+
+// In collaboration with
+// @DrMelon
+// @_Inu_
+// @MaxWrighton
 
 public class Gestures : MonoBehaviour 
 {
@@ -76,7 +82,6 @@ public class Gestures : MonoBehaviour
                             else if (gesture.Type == Gesture.GestureType.TYPE_SWIPE) // Swipe, line
                             {
                                 SwipeGesture swipegesture = new SwipeGesture(gesture);
-                                //print(swipegesture.Direction);
                                 if (Mathf.Abs(swipegesture.Direction.y) > 0.3f) // Moving up and down
                                 {
                                     if (Mathf.Abs(swipegesture.Direction.x) < 0.8f) // Not moving much left and right
@@ -91,7 +96,6 @@ public class Gestures : MonoBehaviour
                                         {
                                             Player_Cast[1] = true;
                                         }
-                                        print(swipegesture.StartPosition);
                                     }
                                 }
                             }

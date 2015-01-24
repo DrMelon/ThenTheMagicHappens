@@ -2,8 +2,14 @@
 using System.Collections;
 
 // Matthew Cormack
+// @johnjoemcbob
 // 24/01/15 00:05
 // #GGJ15
+
+// In collaboration with
+// @DrMelon
+// @_Inu_
+// @MaxWrighton
 
 public class PlayerWand : MonoBehaviour
 {
@@ -62,11 +68,11 @@ public class PlayerWand : MonoBehaviour
                 }
                 if (HasTool)
                 {
-                    //sprite.color = new Color(255, 255, 255, 255); // Show wand
+                    sprite.color = new Color(255, 255, 255, 255); // Show wand
                 }
                 else
                 {
-                    //sprite.color = new Color(255, 255, 255, 0); // Hide wand
+                    sprite.color = new Color(0, 0, 0, 100); // Hide wand
                 }
 
                 // Run logic when this player's wand is shaken
