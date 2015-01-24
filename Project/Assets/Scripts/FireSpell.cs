@@ -4,6 +4,8 @@ using System.Collections;
 public class FireSpell : MonoBehaviour
 {
     public float rotationPerSecond = 180.0f;
+
+
 	// Use this for initialization
 	void Start ()
     {
