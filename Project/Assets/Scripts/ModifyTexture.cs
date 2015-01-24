@@ -4,8 +4,14 @@ using System.Collections;
 public class ModifyTexture : MonoBehaviour {
 
     public Texture2D targetTexture;
-   
+    public Texture2D scorchTexture;
+
+    public Texture2D hello;
+
+
     public int pixelsPerUnit = 100;
+
+    private int particleCollisions;
 
     private ParticleSystem.CollisionEvent[] collisionEvents = new ParticleSystem.CollisionEvent[16];
 
@@ -18,6 +24,7 @@ public class ModifyTexture : MonoBehaviour {
             for (int j = 0; j < 2048; j++)
             {
                 targetTexture.SetPixel(i, j, Color.black);
+
             }
         }
 
@@ -31,8 +38,13 @@ public class ModifyTexture : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-	   
 
+        if (particleCollisions > 100 || Time.renderedFrameCount % (60*5) == 0)
+        {
+            targetTexture.Apply();
+            particleCollisions = 0;
+        }
+        
 
 	}
 
@@ -62,7 +74,12 @@ public class ModifyTexture : MonoBehaviour {
                 //Get collision location
                 DoSplat(collisionEvents[i].intersection, 32, Color.red);
             }
+            i++;
         }
+
+        particleCollisions += numCollisions;
+
+       
     }
 
     public void DoSplat(Vector3 worldXYZ, int size, Color theColour)
@@ -72,15 +89,10 @@ public class ModifyTexture : MonoBehaviour {
         int posX = (int)(worldXYZ.x * pixelsPerUnit);
         int posY = (int)(worldXYZ.z * pixelsPerUnit);
        // int posY = (int)((worldXYZ.y - this.transform.position.y) * (float)pixelsPerUnit);
-        
-
-        print(worldXYZ);
-        print(posX);
-        print(posY);
 
 
         // Create a square ( will be a circle ) centred on x, y
-        for (int i = posX - size / 2; i < posX + size / 2; i++)
+      /*  for (int i = posX - size / 2; i < posX + size / 2; i++)
         {
             for(int j = posY - size / 2; j < posY + size / 2; j++)
             {
@@ -92,9 +104,38 @@ public class ModifyTexture : MonoBehaviour {
                     }
                 }
             }
+        }*/
+
+        // Draw scorch.png texture at posX, posY
+        Color[] scorchCols = scorchTexture.GetPixels();
+        Color[] origCols = targetTexture.GetPixels(posX, posY, 64, 64);
+        for(int c = 0; c < scorchCols.Length; c++)
+        {
+
+            // ALPHA BLENDING 
+            float newR, newG, newB;
+
+            newR = scorchCols[c].r * scorchCols[c].a;
+            newG = scorchCols[c].g * scorchCols[c].a;
+            newB = scorchCols[c].b * scorchCols[c].a;
+
+            newR += origCols[c].r * (1 - scorchCols[c].a);
+            newG += origCols[c].g * (1 - scorchCols[c].a);
+            newB += origCols[c].b * (1 - scorchCols[c].a);
+            
+           
+            
+            
+
+            scorchCols[c].r = newR;
+            scorchCols[c].g = newG;
+            scorchCols[c].b = newB;
+
         }
 
-        targetTexture.Apply();
+        targetTexture.SetPixels(posX, posY, 64, 64, scorchCols);
+
+       
 
     }
 }
