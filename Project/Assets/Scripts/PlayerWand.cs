@@ -17,6 +17,8 @@ public class PlayerWand : MonoBehaviour
     public Gestures GestureManager;
     public ParticleSystem DefaultSpell;
 
+    public GameObject Spell_Fire; // Prefab for spell
+
     private SpriteRenderer sprite;
 
 	void Start()
@@ -48,6 +50,20 @@ public class PlayerWand : MonoBehaviour
 
                         // Orientate the wand OFFSET (parent) depending on the Leap tool (z is rotation)
                         Leap.Vector direction = GestureManager.Player_Tool[Player].GetLeapTool().Direction;
+                        if (Player == 0) // Left hand player
+                        {
+                            if (direction.z < 0) // Direction z should always be positive for aiming wand
+                            {
+                                direction *= -1; // If not, correct it
+                            }
+                        }
+                        else if (Player == 1) // Right hand player
+                        {
+                            if (direction.z > 0) // Direction z should always be negative for aiming wand
+                            {
+                                direction *= -1; // If not, correct it
+                            }
+                        }
                         float angle = direction.x * 45; // Work out the angle to offset the wand
                         {
                             if (Player == 1) // Player two's offset needs to be the inverse
@@ -85,6 +101,12 @@ public class PlayerWand : MonoBehaviour
                     {
                         DefaultSpell.Stop();
                         DefaultSpell.Play();
+                    }
+
+                    // Create spell
+                    if (Spell_Fire)
+                    {
+                        Instantiate(Spell_Fire, transform.GetChild(0).position, Quaternion.Euler(transform.GetChild(0).eulerAngles)); // Child 0 is the tip
                     }
 
                     // Flag casting as handled
