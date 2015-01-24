@@ -8,14 +8,15 @@ public class HealthSys : MonoBehaviour {
 			
  				if (Col.gameObject.tag == "DarkPlayer")
 			    	{
-				print ("health");
+				print ("black");
 				GameVariables.darkWizHealth -= 20;
 		     	Destroy (gameObject);
 				}else
 				if (Col.gameObject.tag == "LightPlayer")
 					{
-					GameVariables.darkWizHealth -= 1;
-			
+					GameVariables.lightWizHealth -= 20;
+			print ("white");
+					Destroy (gameObject);
 				}
 			
 					
