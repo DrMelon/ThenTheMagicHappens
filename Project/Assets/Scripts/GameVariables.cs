@@ -7,6 +7,7 @@ public class GameVariables : MonoBehaviour {
 	public static int lightWizMana = 100;
 	public static int darkWizHealth = 100;
 	public static int darkWizMana = 100;
+	public static float refireValue = 1;
 
 
 	// Use this for initialization
