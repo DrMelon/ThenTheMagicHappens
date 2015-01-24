@@ -54,7 +54,6 @@ public class PlayerWand : MonoBehaviour
                         {
                             if (direction.z < 0) // Direction z should always be positive for aiming wand
                             {
-                                print("CORRECT LEFT");
                                 direction *= -1; // If not, correct it
                             }
                         }
@@ -62,7 +61,6 @@ public class PlayerWand : MonoBehaviour
                         {
                             if (direction.z > 0) // Direction z should always be negative for aiming wand
                             {
-                                print("CORRECT RIGHT");
                                 direction *= -1; // If not, correct it
                             }
                         }
