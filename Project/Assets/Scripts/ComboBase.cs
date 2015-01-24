@@ -239,7 +239,7 @@ public class ComboBase : MonoBehaviour
         keysCombined = true;
     }
 
-    public void CastSpell() //call this when you want to try casting after building up inputs
+    public int CastSpell() //call this when you want to try casting after building up inputs
     {
         // Attempt to combine keys.
         if (RecentKeys.Count > 0 && keysCombined == false)
@@ -265,6 +265,8 @@ public class ComboBase : MonoBehaviour
 
         // Tried to cast spell, reset queue
         ResetQueues();
+
+        return didCombo;
     }
 
     public int CheckMatchingCombo(SpellCombo checkSpell)
