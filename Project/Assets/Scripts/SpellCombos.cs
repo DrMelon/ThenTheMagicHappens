@@ -31,7 +31,7 @@ namespace Tragic
         {
             allCombos = new List<SpellCombo>();
             int spellID = 0;
-            AddSpell("COMBO NUMBER WAN", new string[] { "F", "W" }, spellID++);
+			AddSpell("DUMMY COMBO", new string[] { "F", "U" }, spellID++); //DUMMY COMBO
             AddSpell("COMBO NUMBER TOO", new string[] { "F", "W", "F" }, spellID++);
             
 

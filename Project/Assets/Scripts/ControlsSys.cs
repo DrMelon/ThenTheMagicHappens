@@ -4,12 +4,16 @@ using System.Collections;
 public class ControlsSys : MonoBehaviour {
 
 	public int keyValue;
-	public GameObject magic;
+	public GameObject fireMagic;
+	public GameObject waterMagic;
+
 	public Transform magicSpawn;
 	public float nextCastDark;
 	public float refireValueDark;
 	public float nextCastLight;
 	public float refireValueLight;
+	public float lightSpellID;
+	public float darkSpellID;
 
 
 	// Use this for initialization
@@ -37,7 +41,12 @@ public class ControlsSys : MonoBehaviour {
 
 						if (Input.GetKey ("m") && Time.time > nextCastDark) {
 						nextCastDark = Time.time + refireValueDark;
-						Instantiate (magic, magicSpawn.position, magicSpawn.rotation);
+							darkSpellID = GetComponent<ComboBase>().CastSpell();
+
+						if (darkSpellID == 1)						
+								Instantiate (fireMagic, magicSpawn.position, magicSpawn.rotation);
+						if (darkSpellID == 2)
+								Instantiate (waterMagic, magicSpawn.position, magicSpawn.rotation);
 						}
 
 						
@@ -57,7 +66,13 @@ public class ControlsSys : MonoBehaviour {
 						}
 						if (Input.GetKey ("space") && Time.time > nextCastLight) {
 						nextCastLight = Time.time + refireValueLight;
-						Instantiate (magic, magicSpawn.position, magicSpawn.rotation);
+
+						lightSpellID = GetComponent<ComboBase>().CastSpell();
+				
+						if (lightSpellID == 1)						
+							Instantiate (fireMagic, magicSpawn.position, magicSpawn.rotation);
+						if (lightSpellID == 2)
+							Instantiate (waterMagic, magicSpawn.position, magicSpawn.rotation);
 						}
 				}
 		}
