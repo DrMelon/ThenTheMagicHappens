@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 // The SpellCombos class is static; it only exists in non-initialized form.
@@ -14,12 +15,36 @@ using System.Collections;
 
 namespace Tragic
 {
+    public struct SpellCombo
+    {
+        public string[] spell_input;
+        public int spell_id;
+        public string spell_name;
+    }
     public static class SpellCombos
     {
+       
 
-        public static string[] SPELL_TEST_SINGLEKEYS = { "F", "W" };
+        public static List<SpellCombo> allCombos;
 
-        public static string[] SPELL_TEST_DOUBLEKEYS = { "WE", "F" };
+        public static void GenerateSpells() // Call this once at startup.
+        {
+            allCombos = new List<SpellCombo>();
+            int spellID = 0;
+            AddSpell("COMBO NUMBER WAN", new string[] { "F", "W" }, spellID++);
+            
+
+
+        }
+
+        public static void AddSpell(string spell_name, string[] spell_input, int id)
+        {
+            SpellCombo newCombo = new SpellCombo();
+            newCombo.spell_input = spell_input;
+            newCombo.spell_id = id;
+            newCombo.spell_name = spell_name;
+            allCombos.Add(newCombo);
+        }
 
     }
 }

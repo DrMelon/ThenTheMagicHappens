@@ -58,6 +58,8 @@ public class ComboBase : MonoBehaviour
 
     private static int maxkeys = 10;
 
+    
+
 
 	void Start()
     {
@@ -114,6 +116,9 @@ public class ComboBase : MonoBehaviour
         }
 
 
+        // Generate all the spells.
+        SpellCombos.GenerateSpells();
+
     }
 
 	void Update()
@@ -167,11 +172,20 @@ public class ComboBase : MonoBehaviour
                 CombineKeypresses();
 
             }
-            // Single Key Combos
-            CheckMatchingCombo(SpellCombos.SPELL_TEST_SINGLEKEYS);
 
-            // Double Key Combos
-            CheckMatchingCombo(SpellCombos.SPELL_TEST_DOUBLEKEYS);
+            // Check all combos
+            int didCombo = -1;
+            foreach(SpellCombo SC in SpellCombos.allCombos)
+            {
+               didCombo = CheckMatchingCombo(SC);
+            }
+
+            
+            if(didCombo > -1)
+            {
+                // WOMBO COMBO
+                print("DID COMBO: " + didCombo.ToString());
+            }
 
 
             // Tried to cast spell, reset queue
@@ -248,10 +262,12 @@ public class ComboBase : MonoBehaviour
         keysCombined = true;
     }
 
-    public void CheckMatchingCombo(string[] CheckCombo)
+    public int CheckMatchingCombo(SpellCombo checkSpell)
     {
         // Print Commands
         PrintPressedKeys();
+
+        string[] CheckCombo = checkSpell.spell_input;
 
         // Convert combo dictionary keys into ValidKey keys
         string[] newCombo = new string[CheckCombo.Length];
@@ -289,7 +305,7 @@ public class ComboBase : MonoBehaviour
         if(newCombo.Length > pressedKeysArray.Length)
         {
             // Doesn't match combo
-            return;
+            return -1;
         }
 
         // Need to match first character of combo with something in pressed keys array.
@@ -308,7 +324,7 @@ public class ComboBase : MonoBehaviour
         // If there is no first match or if the length of the combo is longer than the input buffer's remaining space, return.
         if (firstMatch == false || whatPositionInPressedKeysMatch + newCombo.Length > pressedKeysArray.Length)
         {
-            return; //no dice
+            return -1;
         }
 
         for(int i = whatPositionInPressedKeysMatch; i < pressedKeysArray.Length; i++)
@@ -317,7 +333,7 @@ public class ComboBase : MonoBehaviour
             int newComboLoc = i - whatPositionInPressedKeysMatch;
             if(newComboLoc < 0 || newComboLoc > newCombo.Length-1)
             {
-                return;
+                return -1;
             }
             if (keyP.keyPressed == newCombo[newComboLoc])
             {
@@ -333,12 +349,12 @@ public class ComboBase : MonoBehaviour
         if(!stillMatches)
         {
             // Matching failed in mid-combo check.
-            return;
+            return -1;
         }
 
         ////// All checks succeeded! COMBO IS HIT!!!
         print("PERFORMED COMBO! ");
-
+        return checkSpell.spell_id;
 
         
 
