@@ -81,7 +81,7 @@ public class HandController : MonoBehaviour {
       recorder_.Load(recordingAsset);
   }
 
-  void IgnoreCollisions(GameObject first, GameObject second, bool ignore = true) {
+  void IgnoreCollisions(GameObject first, GameObject second, bool ignore  = true) {
     if (first == null || second == null)
       return;
 

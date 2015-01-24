@@ -1,9 +1,16 @@
-﻿using UnityEngine;
+ using UnityEngine;
 using System.Collections;
 
 public class ControlsSys : MonoBehaviour {
 
-	public static int keyValue;
+	public int keyValue;
+	public GameObject magic;
+	public Transform magicSpawn;
+	public float nextCastDark;
+	public float refireValueDark;
+	public float nextCastLight;
+	public float refireValueLight;
+
 
 	// Use this for initialization
 	void Start () {
@@ -12,6 +19,7 @@ public class ControlsSys : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	
 				//DEBUG MOVEMENT CODE 
 				if (this.gameObject.tag == "DarkPlayer") {
 						if (Input.GetKey ("left")) {
@@ -26,7 +34,13 @@ public class ControlsSys : MonoBehaviour {
 						if (Input.GetKey ("down")) {
 						transform.Translate (Vector2.up * 1 * Time.deltaTime);
 						}
+
+						if (Input.GetKey ("m") && Time.time > nextCastDark) {
+						nextCastDark = Time.time + refireValueDark;
+						Instantiate (magic, magicSpawn.position, magicSpawn.rotation);
 						}
+
+						
 				}
 				if (this.gameObject.tag == "LightPlayer") {
 						if (Input.GetKey ("a")) {
@@ -40,6 +54,10 @@ public class ControlsSys : MonoBehaviour {
 						}
 						if (Input.GetKey ("w")) {
 						transform.Translate (Vector2.up * 1 * Time.deltaTime);
+						}
+						if (Input.GetKey ("space") && Time.time > nextCastLight) {
+						nextCastLight = Time.time + refireValueLight;
+						Instantiate (magic, magicSpawn.position, magicSpawn.rotation);
 						}
 				}
 		}
