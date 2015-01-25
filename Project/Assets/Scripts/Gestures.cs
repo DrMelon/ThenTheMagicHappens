@@ -16,6 +16,7 @@ public class Gestures : MonoBehaviour
 {
     public HandController LeapController;
     public ToolModel[] Player_Tool;
+    public float[] Player_Tool_LastY;
     public bool[] Player_Cast;
 
     private static float CenterOffset = 0;
@@ -29,11 +30,12 @@ public class Gestures : MonoBehaviour
 
         // Setup the config file for various gesture minimums
         LeapController.leap_controller_.Config.SetFloat("Gesture.Swipe.MinLength", 100.0f);
-        LeapController.leap_controller_.Config.SetFloat("Gesture.Swipe.MinVelocity", 750f);
+        LeapController.leap_controller_.Config.SetFloat("Gesture.Swipe.MinVelocity", 400);
         LeapController.leap_controller_.Config.Save();
 
         // Dimension the arrays
         Player_Tool = new ToolModel[2];
+        Player_Tool_LastY = new float[2];
         Player_Cast = new bool[2];
 	}
 
@@ -47,14 +49,21 @@ public class Gestures : MonoBehaviour
             float wandcenteroffset = tool.GetLeapTool().TipPosition.z - (tool.GetLeapTool().Direction.z * tool.GetLeapTool().Length / 2);
 
             // Decide which player's wand this is
-            if (wandcenteroffset < CenterOffset) // Player 1 (array 0)
+            int player = 0;
+            if (wandcenteroffset > CenterOffset) // Player 2 (array 1)
             {
-                Player_Tool[0] = tool;
+                player = 1;
             }
-            else if (wandcenteroffset > CenterOffset) // Player 2 (array 1)
+            Player_Tool[player] = tool;
             {
-                Player_Tool[1] = tool;
+                float difference = tool.GetLeapTool().TipPosition.y - Player_Tool_LastY[player];
+                if (difference < -10)
+                {
+                    //print(difference);
+                    Player_Cast[player] = true;
+                }
             }
+            Player_Tool_LastY[player] = tool.GetLeapTool().TipPosition.y;
         }
 
         // Ensure the editor has LeapController set
@@ -91,11 +100,11 @@ public class Gestures : MonoBehaviour
                                         float wandcenteroffset = swipegesture.StartPosition.z;
                                         if (wandcenteroffset < CenterOffset)
                                         {
-                                            Player_Cast[0] = true;
+                                            //Player_Cast[0] = true;
                                         }
                                         else if (wandcenteroffset > CenterOffset)
                                         {
-                                            Player_Cast[1] = true;
+                                            //Player_Cast[1] = true;
                                         }
                                     }
                                 }
@@ -106,4 +115,13 @@ public class Gestures : MonoBehaviour
             }
         }
     }
+}
+
+// Structure to hold;
+//  (Leap.Vector) The position of the tool at this point in time
+//  (Time) The time at which the tool's position was stored
+public class LeapToolFrame
+{
+    Leap.Vector Position;
+    float Time;
 }
