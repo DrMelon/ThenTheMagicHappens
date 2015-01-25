@@ -13,10 +13,6 @@ public class GameVariables : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		lightWizHealth = 100;
-		lightWizMana = 100;
-		darkWizHealth = 100;
-		darkWizMana = 100;
 
 	}
 	
