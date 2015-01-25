@@ -157,12 +157,12 @@ public class ComboBase : MonoBehaviour
         }
 
 
-        /*
+        
         if(Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             CastSpell();
         }
-        */
+        
         
 
 

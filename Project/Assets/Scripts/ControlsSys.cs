@@ -58,26 +58,27 @@ public class ControlsSys : MonoBehaviour {
                                  nextCastDark = Time.time + refireValueDark;
                                  darkSpellID = GetComponent<ComboBase>().CastSpell();
 
+                                 float multi = -1;
                                  if (darkSpellID == 0)
-                                     Instantiate(_1STMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_1STMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                                  if (darkSpellID == 1)
-                                     Instantiate(_2NDMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_2NDMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                                  if (darkSpellID == 2)
-                                     Instantiate(_3RDMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_3RDMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                                  if (darkSpellID == 3)
-                                     Instantiate(_4THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_4THMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                                  if (darkSpellID == 4)
-                                     Instantiate(_5THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_5THMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                                  if (darkSpellID == 5)
-                                     Instantiate(_6THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_6THMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                                  if (darkSpellID == 6)
-                                     Instantiate(_7THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_7THMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                                  if (darkSpellID == 7)
-                                     Instantiate(_8THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_8THMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                                  if (darkSpellID == 8)
-                                     Instantiate(_9THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_9THMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                                  if (darkSpellID == 9)
-                                     Instantiate(_10THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_10THMagic, magicSpawn.position, Quaternion.Euler(multi * magicSpawn.eulerAngles));
                              }
 						
 						}
