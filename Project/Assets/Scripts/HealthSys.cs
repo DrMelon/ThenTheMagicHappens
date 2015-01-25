@@ -14,6 +14,7 @@ public class HealthSys : MonoBehaviour {
 				}else
 				if (Col.gameObject.tag == "LightPlayer")
 					{
+			print( Col.gameObject );
 					GameVariables.lightWizHealth -= 20;
 			print ("white");
 					Destroy (gameObject);
