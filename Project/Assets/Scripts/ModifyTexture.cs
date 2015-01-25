@@ -50,7 +50,7 @@ public class ModifyTexture : MonoBehaviour {
         // Debug: force a capture
         if (needSave)
         {
-            SaveToFile("test.png");
+            SaveToFile("test_" + targetTexture.ToString () + "_.png");
             needSave = false;
         }
 
