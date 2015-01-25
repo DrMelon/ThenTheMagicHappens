@@ -32,9 +32,9 @@ namespace Tragic
 			// F, W, E, A,
             allCombos = new List<SpellCombo>();
             int spellID = 0;
+            AddSpell("3RD COMBO", new string[] { "W", "E", "F" }, spellID++);
 			AddSpell("1ST COMBO", new string[] { "F", "W" }, spellID++); 
             AddSpell("2ND COMBO", new string[] { "F", "E"}, spellID++);
-			AddSpell("3RD COMBO", new string[] { "W", "F", "E" }, spellID++);
 			AddSpell("4TH COMBO", new string[] { "A", "F", "E" }, spellID++);
 			AddSpell("5TH COMBO", new string[] { "A", "F", "W", "E" }, spellID++);
 			AddSpell("6TH COMBO", new string[] { "E", "W", "F", "E"}, spellID++);
