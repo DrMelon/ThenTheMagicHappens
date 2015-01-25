@@ -253,6 +253,10 @@ public class ComboBase : MonoBehaviour
         foreach (SpellCombo SC in SpellCombos.allCombos)
         {
             didCombo = CheckMatchingCombo(SC);
+			if(didCombo > -1)
+			{
+				break; // don't keep trying combos if we found one!
+			}
         }
 
 
