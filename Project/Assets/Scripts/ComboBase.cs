@@ -3,13 +3,13 @@ using System.Collections;
 using System;
 using Tragic;
 
-// Matthew Cormack
-// @johnjoemcbob
-// 24/01/15 00:05
+// Jordan Brown
+// @drmelon
+// 24/01/15 19:00
 // #GGJ15
 
 // In collaboration with
-// @DrMelon
+// @johnjoemcbob
 // @_Inu_
 // @MaxWrighton
 
