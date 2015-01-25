@@ -33,22 +33,22 @@ public class ComboBase : MonoBehaviour
     private bool keysCombined;
 
     // Horrible string literals, representing together-key-combos
-    public static string KEY_FIRE;
-    public static string KEY_WATER;
-    public static string KEY_EARTH;
-    public static string KEY_AIR;
-    public static string TWOKEYS_FIREWATER;
-    public static string TWOKEYS_FIREEARTH;
-    public static string TWOKEYS_FIREAIR;
-    public static string TWOKEYS_WATERFIRE;
-    public static string TWOKEYS_WATEREARTH;
-    public static string TWOKEYS_WATERAIR;
-    public static string TWOKEYS_EARTHFIRE;
-    public static string TWOKEYS_EARTHWATER;
-    public static string TWOKEYS_EARTHAIR;
-    public static string TWOKEYS_AIRFIRE;
-    public static string TWOKEYS_AIRWATER;
-    public static string TWOKEYS_AIREARTH;
+    public  string KEY_FIRE;
+    public  string KEY_WATER;
+    public string KEY_EARTH;
+    public  string KEY_AIR;
+    public string TWOKEYS_FIREWATER;
+    public string TWOKEYS_FIREEARTH;
+    public  string TWOKEYS_FIREAIR;
+    public  string TWOKEYS_WATERFIRE;
+    public  string TWOKEYS_WATEREARTH;
+    public  string TWOKEYS_WATERAIR;
+    public  string TWOKEYS_EARTHFIRE;
+    public  string TWOKEYS_EARTHWATER;
+    public  string TWOKEYS_EARTHAIR;
+    public  string TWOKEYS_AIRFIRE;
+    public  string TWOKEYS_AIRWATER;
+    public  string TWOKEYS_AIREARTH;
 
     // RecentKeys represents keypresses that have just been made;
     // PressedKeys is the list of keys to be checked for a combo, as it has been processed to group combined presses together.
@@ -253,6 +253,10 @@ public class ComboBase : MonoBehaviour
         foreach (SpellCombo SC in SpellCombos.allCombos)
         {
             didCombo = CheckMatchingCombo(SC);
+			if(didCombo > -1)
+			{
+				break; // don't keep trying combos if we found one!
+			}
         }
 
 
