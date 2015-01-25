@@ -34,13 +34,13 @@ namespace Tragic
             int spellID = 0;
 			AddSpell("1ST COMBO", new string[] { "F", "W" }, spellID++); 
             AddSpell("2ND COMBO", new string[] { "F", "E"}, spellID++);
-			AddSpell("3RD COMBO", new string[] { "W", "F", "E" }, spellID++);
-			AddSpell("4TH COMBO", new string[] { "A", "F", "E" }, spellID++);
+			AddSpell("3RD COMBO", new string[] { "W", "E", "F" }, spellID++);
+			AddSpell("4TH COMBO", new string[] { "A", "E", "F" }, spellID++);
 			AddSpell("5TH COMBO", new string[] { "A", "F", "W", "E" }, spellID++);
 			AddSpell("6TH COMBO", new string[] { "E", "W", "F", "E"}, spellID++);
 			AddSpell("7TH COMBO", new string[] { "A", "A", "E", "A", "W"}, spellID++);
 			AddSpell("8TH COMBO", new string[] { "W", "A", "F", "E", "W"}, spellID++);
-			AddSpell("9TH COMBO", new string[] { "F", "E", "A", "E", "E", "F"}, spellID++);
+			AddSpell("9TH COMBO", new string[] { "W", "E", "A", "E", "E", "F"}, spellID++);
 			AddSpell("10TH COMBO", new string[] { "W", "F", "A", "E", "A", "F"}, spellID++);
 
 			//ADD SPELLS HERE!
