@@ -5,6 +5,7 @@ using System.IO;
 public class ModifyTexture : MonoBehaviour {
 
     public Texture2D targetTexture;
+	public Color defaultColor;
     //public Texture2D scorchTexture;
 
     public bool needSave;
@@ -24,7 +25,7 @@ public class ModifyTexture : MonoBehaviour {
         {
             for (int j = 0; j < 2048; j++)
             {
-                targetTexture.SetPixel(i, j, Color.black);
+				targetTexture.SetPixel(i, j, defaultColor);
 
             }
         }
@@ -113,10 +114,19 @@ public class ModifyTexture : MonoBehaviour {
         if (scorchTexture != null)
         {
             // Calculate X, Y offsets
-            //int posX = (int)((worldXYZ.x - this.transform.position.x) * (float)pixelsPerUnit);
-            int posX = (int)(worldXYZ.x * pixelsPerUnit);
-            int posY = (int)(worldXYZ.z * pixelsPerUnit);
-            // int posY = (int)((worldXYZ.y - this.transform.position.y) * (float)pixelsPerUnit);
+            float partPosX = (worldXYZ.x - (this.transform.position.x - this.transform.localScale.x / 2));
+            float partPosY = (worldXYZ.y - (this.transform.position.y - this.transform.localScale.y / 2));
+            int posX = (int)(partPosX * pixelsPerUnit * 2);
+            int posY = (int)(partPosY * pixelsPerUnit * 2);
+            if(posX < 0)
+			{
+				posX -= posX*2;
+				return;
+			}
+			if(posY < 0)
+			{
+				posY -= posY*2;
+			}
 
             // Clamp pixel sampling/writing location values
             int numPixX = 64;
