@@ -7,10 +7,13 @@ public class HealthBarLogic : MonoBehaviour {
 	public int currentDarkMana;
 	public int currentLightHealth;
 	public int currentlightMana;
+    public GameObject gameOverScreen;
+
+    bool startedDeath;
 
 	// Use this for initialization
 	void Start () {
-	
+        startedDeath = false;
 	}
 
 	// Update is called once per frame
@@ -177,10 +180,33 @@ public class HealthBarLogic : MonoBehaviour {
 			var bar90 = GameObject.Find ("10%BarLH");
 			Destroy (bar90);
 		}
+        if ( currentDarkHealth <= 0 || currentLightHealth <= 0 && startedDeath == false)
+        {
 
+            // Show death screen for 5 seconds, then return to menu
+            startedDeath = true;
+            StartCoroutine(DeathRoutine());
+            
+        }
 }
 
+    IEnumerator DeathRoutine()
+    {
+        // Stored as co-routine
 
+        // Show death screen
+        gameOverScreen.renderer.material.color = Color.white;
+        yield return new WaitForSeconds(5);
+
+        // Reset vars
+        GameVariables.darkWizHealth = 100;
+        GameVariables.lightWizHealth = 100;
+        GameVariables.darkWizMana = 100;
+        GameVariables.lightWizMana = 100;
+
+
+        Application.LoadLevel("Menu");
+    }
 
 
 	}

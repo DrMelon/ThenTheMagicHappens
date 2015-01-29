@@ -38,16 +38,16 @@ public class ControlsSys : MonoBehaviour {
 	
 				//DEBUG MOVEMENT CODE 
 				if (this.gameObject.tag == "DarkPlayer") {
-						if (Input.GetKey ("left")) {
+						if (Input.GetKey ("up")) {
 								transform.Translate (Vector2.right * playerSpeed * Time.deltaTime);
 						}
-						if (Input.GetKey ("right")) {
+						if (Input.GetKey ("down")) {
 								transform.Translate (Vector2.right * -playerSpeed * Time.deltaTime);
 						}
-						if (Input.GetKey ("up")) {
+						if (Input.GetKey ("right")) {
 								transform.Translate (Vector2.up * playerSpeed * Time.deltaTime);
 						}
-						if (Input.GetKey ("down")) {
+						if (Input.GetKey ("left")) {
 								transform.Translate (Vector2.up * -playerSpeed * Time.deltaTime);
 						}
                         if (GestureManager.Player_Cast[Player] && Player==0)
@@ -58,41 +58,42 @@ public class ControlsSys : MonoBehaviour {
                                  nextCastDark = Time.time + refireValueDark;
                                  darkSpellID = GetComponent<ComboBase>().CastSpell();
 
+                                 float multi = -1;
                                  if (darkSpellID == 0)
-                                     Instantiate(_1STMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_1STMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3( magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y,180-magicSpawn.eulerAngles.z)));
                                  if (darkSpellID == 1)
-                                     Instantiate(_2NDMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_2NDMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
                                  if (darkSpellID == 2)
-                                     Instantiate(_3RDMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_3RDMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
                                  if (darkSpellID == 3)
-                                     Instantiate(_4THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_4THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
                                  if (darkSpellID == 4)
-                                     Instantiate(_5THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_5THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
                                  if (darkSpellID == 5)
-                                     Instantiate(_6THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_6THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
                                  if (darkSpellID == 6)
-                                     Instantiate(_7THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_7THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
                                  if (darkSpellID == 7)
-                                     Instantiate(_8THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_8THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
                                  if (darkSpellID == 8)
-                                     Instantiate(_9THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_9THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
                                  if (darkSpellID == 9)
-                                     Instantiate(_10THMagic, magicSpawn.position, magicSpawn.rotation);
+                                     Instantiate(_10THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
                              }
 						
 						}
 				}
 				if (this.gameObject.tag == "LightPlayer") {
-						if (Input.GetKey ("a")) {
+						if (Input.GetKey ("s")) {
 				transform.Translate (Vector2.right * -playerSpeed * Time.deltaTime);
 							}
-						if (Input.GetKey ("d")) {
+						if (Input.GetKey ("w")) {
 				transform.Translate (Vector2.right * playerSpeed * Time.deltaTime);
 							}
-						if (Input.GetKey ("s")) {
+						if (Input.GetKey ("d")) {
 				transform.Translate (Vector2.up * -playerSpeed * Time.deltaTime);
 						}
-						if (Input.GetKey ("w")) {
+						if (Input.GetKey ("a")) {
 				transform.Translate (Vector2.up * playerSpeed * Time.deltaTime);
 						}
                         if (GestureManager.Player_Cast[Player] && Player==1)
