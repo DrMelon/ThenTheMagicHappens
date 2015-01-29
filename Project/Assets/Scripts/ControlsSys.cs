@@ -28,106 +28,129 @@ public class ControlsSys : MonoBehaviour {
     public int Player = 0;
     public Gestures GestureManager;
 
+    public Vector2 MinPosition;
+    public Vector2 MaxPosition;
+
 	// Use this for initialization
 	void Start () {
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
-				//DEBUG MOVEMENT CODE 
-				if (this.gameObject.tag == "DarkPlayer") {
-						if (Input.GetKey ("up")) {
-								transform.Translate (Vector2.right * playerSpeed * Time.deltaTime);
-						}
-						if (Input.GetKey ("down")) {
-								transform.Translate (Vector2.right * -playerSpeed * Time.deltaTime);
-						}
-						if (Input.GetKey ("right")) {
-								transform.Translate (Vector2.up * playerSpeed * Time.deltaTime);
-						}
-						if (Input.GetKey ("left")) {
-								transform.Translate (Vector2.up * -playerSpeed * Time.deltaTime);
-						}
-                        if (GestureManager.Player_Cast[Player] && Player==0)
-                        {
-                            GestureManager.Player_Cast[Player] = false;
-                             if (Time.time > nextCastDark)
-                             {
-                                 nextCastDark = Time.time + refireValueDark;
-                                 darkSpellID = GetComponent<ComboBase>().CastSpell();
+    void Update()
+    {
+        //DEBUG MOVEMENT CODE 
+        if (this.gameObject.tag == "DarkPlayer")
+        {
+            if (Input.GetKey("up"))
+            {
+                transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey("down"))
+            {
+                transform.Translate(Vector2.right * -playerSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey("right"))
+            {
+                transform.Translate(Vector2.up * playerSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey("left"))
+            {
+                transform.Translate(Vector2.up * -playerSpeed * Time.deltaTime);
+            }
 
-                                 float multi = -1;
-                                 if (darkSpellID == 0)
-                                     Instantiate(_1STMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3( magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y,180-magicSpawn.eulerAngles.z)));
-                                 if (darkSpellID == 1)
-                                     Instantiate(_2NDMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
-                                 if (darkSpellID == 2)
-                                     Instantiate(_3RDMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
-                                 if (darkSpellID == 3)
-                                     Instantiate(_4THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
-                                 if (darkSpellID == 4)
-                                     Instantiate(_5THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
-                                 if (darkSpellID == 5)
-                                     Instantiate(_6THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
-                                 if (darkSpellID == 6)
-                                     Instantiate(_7THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
-                                 if (darkSpellID == 7)
-                                     Instantiate(_8THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
-                                 if (darkSpellID == 8)
-                                     Instantiate(_9THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
-                                 if (darkSpellID == 9)
-                                     Instantiate(_10THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
-                             }
-						
-						}
-				}
-				if (this.gameObject.tag == "LightPlayer") {
-						if (Input.GetKey ("s")) {
-				transform.Translate (Vector2.right * -playerSpeed * Time.deltaTime);
-							}
-						if (Input.GetKey ("w")) {
-				transform.Translate (Vector2.right * playerSpeed * Time.deltaTime);
-							}
-						if (Input.GetKey ("d")) {
-				transform.Translate (Vector2.up * -playerSpeed * Time.deltaTime);
-						}
-						if (Input.GetKey ("a")) {
-				transform.Translate (Vector2.up * playerSpeed * Time.deltaTime);
-						}
-                        if (GestureManager.Player_Cast[Player] && Player==1)
+            if (GestureManager.Player_Cast[Player] && Player == 0)
+            {
+                GestureManager.Player_Cast[Player] = false;
+                if (Time.time > nextCastDark)
                 {
-                    GestureManager.Player_Cast[Player] = false;
-                    if (Time.time > nextCastLight)
-                    {
-                        nextCastLight = Time.time + refireValueLight;
+                    nextCastDark = Time.time + refireValueDark;
+                    darkSpellID = GetComponent<ComboBase>().CastSpell();
 
-                        lightSpellID = GetComponent<ComboBase>().CastSpell();
-
-                        if (lightSpellID == 0)
-                            Instantiate(_1STMagic, magicSpawn.position, magicSpawn.rotation);
-                        if (lightSpellID == 1)
-                            Instantiate(_2NDMagic, magicSpawn.position, magicSpawn.rotation);
-                        if (lightSpellID == 2)
-                            Instantiate(_3RDMagic, magicSpawn.position, magicSpawn.rotation);
-                        if (lightSpellID == 3)
-                            Instantiate(_4THMagic, magicSpawn.position, magicSpawn.rotation);
-                        if (lightSpellID == 4)
-                            Instantiate(_5THMagic, magicSpawn.position, magicSpawn.rotation);
-                        if (lightSpellID == 5)
-                            Instantiate(_6THMagic, magicSpawn.position, magicSpawn.rotation);
-                        if (lightSpellID == 6)
-                            Instantiate(_7THMagic, magicSpawn.position, magicSpawn.rotation);
-                        if (lightSpellID == 7)
-                            Instantiate(_8THMagic, magicSpawn.position, magicSpawn.rotation);
-                        if (lightSpellID == 8)
-                            Instantiate(_9THMagic, magicSpawn.position, magicSpawn.rotation);
-                        if (lightSpellID == 9)
-                            Instantiate(_10THMagic, magicSpawn.position, magicSpawn.rotation);
-                  }
+                    float multi = -1;
+                    if (darkSpellID == 0)
+                        Instantiate(_1STMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                    if (darkSpellID == 1)
+                        Instantiate(_2NDMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                    if (darkSpellID == 2)
+                        Instantiate(_3RDMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                    if (darkSpellID == 3)
+                        Instantiate(_4THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                    if (darkSpellID == 4)
+                        Instantiate(_5THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                    if (darkSpellID == 5)
+                        Instantiate(_6THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                    if (darkSpellID == 6)
+                        Instantiate(_7THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                    if (darkSpellID == 7)
+                        Instantiate(_8THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                    if (darkSpellID == 8)
+                        Instantiate(_9THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                    if (darkSpellID == 9)
+                        Instantiate(_10THMagic, magicSpawn.position, Quaternion.Euler(multi * new Vector3(magicSpawn.eulerAngles.x, magicSpawn.eulerAngles.y, 180 - magicSpawn.eulerAngles.z)));
+                }
 
             }
         }
+        if (this.gameObject.tag == "LightPlayer")
+        {
+            if (Input.GetKey("s"))
+            {
+                transform.Translate(Vector2.right * -playerSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey("w"))
+            {
+                transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey("d"))
+            {
+                transform.Translate(Vector2.up * -playerSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey("a"))
+            {
+                transform.Translate(Vector2.up * playerSpeed * Time.deltaTime);
+            }
+            if (GestureManager.Player_Cast[Player] && Player == 1)
+            {
+                GestureManager.Player_Cast[Player] = false;
+                if (Time.time > nextCastLight)
+                {
+                    nextCastLight = Time.time + refireValueLight;
+
+                    lightSpellID = GetComponent<ComboBase>().CastSpell();
+
+                    if (lightSpellID == 0)
+                        Instantiate(_1STMagic, magicSpawn.position, magicSpawn.rotation);
+                    if (lightSpellID == 1)
+                        Instantiate(_2NDMagic, magicSpawn.position, magicSpawn.rotation);
+                    if (lightSpellID == 2)
+                        Instantiate(_3RDMagic, magicSpawn.position, magicSpawn.rotation);
+                    if (lightSpellID == 3)
+                        Instantiate(_4THMagic, magicSpawn.position, magicSpawn.rotation);
+                    if (lightSpellID == 4)
+                        Instantiate(_5THMagic, magicSpawn.position, magicSpawn.rotation);
+                    if (lightSpellID == 5)
+                        Instantiate(_6THMagic, magicSpawn.position, magicSpawn.rotation);
+                    if (lightSpellID == 6)
+                        Instantiate(_7THMagic, magicSpawn.position, magicSpawn.rotation);
+                    if (lightSpellID == 7)
+                        Instantiate(_8THMagic, magicSpawn.position, magicSpawn.rotation);
+                    if (lightSpellID == 8)
+                        Instantiate(_9THMagic, magicSpawn.position, magicSpawn.rotation);
+                    if (lightSpellID == 9)
+                        Instantiate(_10THMagic, magicSpawn.position, magicSpawn.rotation);
+                }
+
+            }
+        }
+
+        Vector3 current = transform.localPosition;
+        {
+            current.x = Mathf.Max(current.x, MinPosition.x); // Clamp to minimum x
+            current.y = Mathf.Max(current.y, MinPosition.y); // Clamp to minimum y
+            current.x = Mathf.Min(current.x, MaxPosition.x); // Clamp to maximum x
+            current.y = Mathf.Min(current.y, MaxPosition.y); // Clamp to maximum y
+        }
+        transform.localPosition = current;
     }
 }
