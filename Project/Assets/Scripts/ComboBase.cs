@@ -209,19 +209,19 @@ public class ComboBase : MonoBehaviour
                 KeyCommand combinedKey = new KeyCommand();
 
                 // Check to see if the command was entered during the 15 frames of leniency
-                if ((Math.Abs(currentCheckKey.framePressed - prevKeyCmd.framePressed) <= 7) &&
-                    (currentCheckKey.keyPressed != prevKeyCmd.keyPressed))
-                {
-                    // Combine these keys.
-                    combinedKey.keyPressed = prevKeyCmd.keyPressed + currentCheckKey.keyPressed;
-                    combinedKey.framePressed = currentCheckKey.framePressed;
-                    currentCheckKey.combined = true;
+                //if ((Math.Abs(currentCheckKey.framePressed - prevKeyCmd.framePressed) <= 7) &&
+                //    (currentCheckKey.keyPressed != prevKeyCmd.keyPressed))
+                //{
+                //    // Combine these keys.
+                //    combinedKey.keyPressed = prevKeyCmd.keyPressed + currentCheckKey.keyPressed;
+                //    combinedKey.framePressed = currentCheckKey.framePressed;
+                //    currentCheckKey.combined = true;
                     
                     
-                    combinedKey.combined = true;
-                    combinedKey.pressed = true;
-                }
-                else
+                //    combinedKey.combined = true;
+                //    combinedKey.pressed = true;
+                //}
+                //else
                 {
                     combinedKey = currentCheckKey;
                     

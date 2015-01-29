@@ -194,8 +194,16 @@ public class HealthBarLogic : MonoBehaviour {
     {
         // Stored as co-routine
 
+        // Wait for 5 seconds
+        yield return new WaitForSeconds(5);
+
         // Show death screen
         gameOverScreen.renderer.material.color = Color.white;
+
+        // Play gameover audio
+        GameObject.Find("magicgoing").GetComponent<AudioSource>().Play();
+
+        // Wait for 5 seconds
         yield return new WaitForSeconds(5);
 
         // Reset vars

@@ -58,6 +58,10 @@ public class ControlsSys : MonoBehaviour {
             {
                 transform.Translate(Vector2.up * -playerSpeed * Time.deltaTime);
             }
+            if (Input.GetKey("n"))
+            {
+                GestureManager.Player_Cast[Player] = true;
+            }
 
             if (GestureManager.Player_Cast[Player] && Player == 0)
             {
@@ -109,6 +113,10 @@ public class ControlsSys : MonoBehaviour {
             if (Input.GetKey("a"))
             {
                 transform.Translate(Vector2.up * playerSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey("m"))
+            {
+                GestureManager.Player_Cast[Player] = true;
             }
             if (GestureManager.Player_Cast[Player] && Player == 1)
             {

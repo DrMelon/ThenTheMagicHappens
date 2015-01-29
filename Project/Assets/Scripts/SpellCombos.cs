@@ -41,8 +41,8 @@ namespace Tragic
             AddSpell("6TH COMBO", new string[] { "E", "W", "F", "E" }, spellID++);
             AddSpell("7TH COMBO", new string[] { "A", "A", "E", "A", "W" }, spellID++);
             AddSpell("8TH COMBO", new string[] { "W", "A", "F", "E", "W" }, spellID++);
-            AddSpell("9TH COMBO", new string[] { "W", "E", "A", "E", "E", "F" }, spellID++);
-            AddSpell("10TH COMBO", new string[] { "W", "F", "A", "E", "A", "F" }, spellID++);
+            AddSpell("9TH COMBO", new string[] { "W", "E", "A", "E", "E", "F" }, spellID++); // 420
+            AddSpell("10TH COMBO", new string[] { "W", "F", "A", "E", "A", "F" }, spellID++); // Mega
 
 
 
