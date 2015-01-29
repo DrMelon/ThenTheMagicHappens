@@ -52,7 +52,7 @@ public class ComboBase : MonoBehaviour
 
     // RecentKeys represents keypresses that have just been made;
     // PressedKeys is the list of keys to be checked for a combo, as it has been processed to group combined presses together.
-    private Queue RecentKeys;
+    public Queue RecentKeys;
     private Queue PressedKeys;
     private int currentkey = 0;
 

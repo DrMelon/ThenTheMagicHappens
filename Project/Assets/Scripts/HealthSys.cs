@@ -3,19 +3,20 @@ using System.Collections;
 
 public class HealthSys : MonoBehaviour {
 
+	public int power;
+
 	void OnCollisionEnter2D(Collision2D Col)
 		{
 			
  				if (Col.gameObject.tag == "DarkPlayer")
 			    	{
 				print ("black");
-				GameVariables.darkWizHealth -= 20;
+				GameVariables.darkWizHealth -= power;
 		     	Destroy (gameObject);
 				}else
 				if (Col.gameObject.tag == "LightPlayer")
 					{
-			print( Col.gameObject );
-					GameVariables.lightWizHealth -= 20;
+					GameVariables.lightWizHealth -= power;
 			print ("white");
 					Destroy (gameObject);
 				}
