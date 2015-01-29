@@ -57,7 +57,7 @@ public class Gestures : MonoBehaviour
             Player_Tool[player] = tool;
             {
                 float difference = tool.GetLeapTool().TipPosition.y - Player_Tool_LastY[player];
-                if (difference < -10)
+                if (difference < -20)
                 {
                     //print(difference);
                     Player_Cast[player] = true;

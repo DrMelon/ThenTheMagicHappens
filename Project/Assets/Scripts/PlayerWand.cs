@@ -104,13 +104,13 @@ public class PlayerWand : MonoBehaviour
                     }
 
                     // Create spell
-                    if (Spell_Fire)
-                    {
-                        Instantiate(Spell_Fire, transform.GetChild(0).localPosition, Quaternion.Euler(transform.GetChild(0).eulerAngles)); // Child 0 is the tip
-                    }
+                    //if (Spell_Fire)
+                    //{
+                    //    Instantiate(Spell_Fire, transform.GetChild(0).localPosition, Quaternion.Euler(transform.GetChild(0).eulerAngles)); // Child 0 is the tip
+                    //}
 
                     // Flag casting as handled
-                    GestureManager.Player_Cast[Player] = false;
+                    //GestureManager.Player_Cast[Player] = false;
                 }
             }
         }
