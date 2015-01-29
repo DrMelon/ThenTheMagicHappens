@@ -386,8 +386,21 @@ public class ComboBase : MonoBehaviour
         outs += "]";
         print(outs);
     }
-    
-    
+
+    // Get the element id of a button using the ValidKeys array
+    // IN: (button) The button pressed
+    // OUT: (int) The element ID it refers to
+    public int GetElement(string button)
+    {
+        for (int element = 0; element < 4; element++)
+        {
+            if (ValidKeys[element] == button)
+            {
+                return element;
+            }
+        }
+        return -1;
+    }
     
 }
 
