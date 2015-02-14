@@ -52,7 +52,7 @@ public class PlayerWand : MonoBehaviour
                         Leap.Vector direction = GestureManager.Player_Tool[Player].GetLeapTool().Direction;
                         if (Player == 0) // Left hand player
                         {
-                            if (direction.z < 0) // Direction z should always be positive for aiming wand
+                            if (direction.z > 0) // Direction z should always be positive for aiming wand
                             {
                                 direction *= -1; // If not, correct it
                             }
